@@ -8,10 +8,10 @@ st.set_page_config(layout="wide")
 # 側邊欄輸入
 st.sidebar.title("工作區")
 user_id = st.sidebar.text_input("請輸入您的員編")
-dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部", "外科部"])
+dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部"])
 example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
-department_file = {"內科部": "filtered_MED.jsonl", "外科部": "filtered_SURG.jsonl"}
+department_file = {"內科部": "filtered_MED.jsonl"}
 df = pd.read_json(department_file, lines=True)
 
 example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
