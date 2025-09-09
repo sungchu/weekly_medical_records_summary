@@ -1,0 +1,19 @@
+[theme]
+# 主色：醫療綠（按鈕/互動元素）
+primaryColor = "#2E7D32"
+
+# 主畫面背景：柔和白色（不是刺眼的純白）
+backgroundColor = "#FAFAFA"
+
+# 次背景：淡灰綠（輕微區隔卡片/容器，增加清爽感）
+secondaryBackgroundColor = "#F1F8F6"
+
+# 文字顏色：深灰（比純黑更柔和，避免刺眼）
+textColor = "#2E2E2E"
+
+[theme.sidebar]
+# 側邊欄背景：淡灰綠，呼應醫療主色
+backgroundColor = "#F1F8F2"
+secondaryBackgroundColor = "#C8E6C9"
+# 側邊欄文字：深綠，專業又沉穩
+textColor = "#1B5E20"
