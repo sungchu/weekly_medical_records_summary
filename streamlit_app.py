@@ -5,15 +5,24 @@ import pandas as pd
 # 設定頁面寬度
 st.set_page_config(layout="wide")
 
+# 側邊欄輸入
+st.sidebar.title("工作區")
+user_id = st.sidebar.text_input("請輸入您的員編")
+dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部", "外科部"])
+example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
+
+department_file = {"內科部": "filtered_MED.jsonl", "外科部": "filtered_SURG.jsonl"}
+df = pd.read_json(department_file, lines=True)
+
+example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
+idx = example_to_idx[example_choice]
+
 # 模擬科室筆記
 departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
                 "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
                 "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
                 "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
                 "醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week"]
-
-df = pd.read_json("filtered_MED.jsonl", lines=True)
-idx = 0
 
 department_notes = {
 "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
@@ -56,18 +65,6 @@ department_notes = {
 # 中間欄整理的病歷資訊
 diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS'], 
 summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK'], 
-
-# 側邊欄輸入
-st.sidebar.title("工作區")
-
-# 輸入員編
-user_id = st.sidebar.text_input("請輸入您的員編")
-
-# 選科室
-dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部", "外科部"])
-
-# 選範例
-example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
 # 主區域顯示
 st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
