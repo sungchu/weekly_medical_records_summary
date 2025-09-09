@@ -17,7 +17,7 @@ st.set_page_config(layout="wide")
 
 # 側邊欄輸入
 st.sidebar.title("工作區")
-user_id = st.sidebar.text_input("請輸入您的員編")
+user_id = st.sidebar.text_input("請輸入您的員工編號")
 dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部"])
 example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
