@@ -1,6 +1,15 @@
 import streamlit as st
 import random
 import pandas as pd
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+scope = ['https://spreadsheets.google.com/feeds',
+         'https://www.googleapis.com/auth/drive']  # 可以同時存取 Drive
+creds = ServiceAccountCredentials.from_json_keyfile_name('googlesheetapi.json', scope)
+client = gspread.authorize(creds)
+sheet = client.open_by_key("1wM-Q11flPuvorbjbmUcKLVbbSJKAegTxRvI_f-xiL9E").sheet1
+
 
 # 設定頁面寬度
 st.set_page_config(layout="wide")
@@ -220,6 +229,11 @@ with right_column:
 
     # 提交按鈕
     if st.button("提交問卷"):
+        
+        # 存入 google sheet
+        submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10]
+        sheet.append_row(submission_data)
+        
         st.success("問卷已提交！")
         st.write("### Diagnosis 評估結果")
         st.write(f"1. 是否包含重要診斷：{Q1}")
