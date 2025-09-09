@@ -19,59 +19,43 @@ department_notes = {
 "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
 "出院病摘【出院診斷】": df.iloc[idx]['CD'],
 "手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
-"病程紀錄【PAP之Problem】": {
-                            "progress_note": df.iloc[idx]['progress_history'],
-                            "on_service_note": df.iloc[idx]['onservice_history'],
-                            "off_service_note": df.iloc[idx]['offservice_history']
-                        },
+"病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
+                        "on_service_note": df.iloc[idx]['onservice_history'],
+                        "off_service_note": df.iloc[idx]['offservice_history']},
 "最近一次weekly summary diagnosis": df.iloc[idx]['last_week_diagnosis'],
-"入院紀錄【主訴、病史、醫療需求與治療計畫】": {
-                            "主訴": df.iloc[idx]['CC_CONTENT'],
-                            "病史": df.iloc[idx]['PH_CONTENT'],
-                            "醫療需求與治療計畫": df.iloc[idx]['PT_CONTENT']
-                        },
-"病程紀錄類(progress note)": json.dumps({
-                            "insert_datetime": df.iloc[idx]['PROGRESSNOTE_INSERTDATETIME'],
+"入院紀錄【主訴、病史、醫療需求與治療計畫】": {"主訴": df.iloc[idx]['CC_CONTENT'],
+                                    "病史": df.iloc[idx]['PH_CONTENT'],
+                                    "醫療需求與治療計畫": df.iloc[idx]['PT_CONTENT']},
+"病程紀錄類(progress note)": {"insert_datetime": df.iloc[idx]['PROGRESSNOTE_INSERTDATETIME'],
                             "subjective": df.iloc[idx]['PROGRESSNOTE_SUBJECTIVE'],
                             "objective": df.iloc[idx]['PROGRESSNOTE_OBJECTIVE'],
                             "yesterday_summary": df.iloc[idx]['PROGRESSNOTE_YESTERDAYSUMMARY'],
                             "bsibundle_reason": df.iloc[idx]['PROGRESSNOTE_BSIBUNDLE'],
-                            "PAP": df.iloc[idx]['PROGRESSNOTE_PAP']
-                        }, ensure_ascii=False, indent=2),
-"病程紀錄類(on service note)": json.dumps({
-                            "insert_datetime": combined_df.iloc[idx]['ONSERVICENOTE_INSERTDATETIME'],
-                            "diagnosis_and_history": combined_df.iloc[idx]['ONSERVICENOTE_DIAGNOSISANDHISTORY'],
-                            "physical_exam_and_assessment": combined_df.iloc[idx]['ONSERVICENOTE_PHYSICALEXAMANDASSESSMENT'],
-                            "current_medication": combined_df.iloc[idx]['ONSERVICENOTE_CURRENTMEDICATION'],
-                            "pap": combined_df.iloc[idx]['ONSERVICENOTE_PAP']
-                        }, ensure_ascii=False, indent=2),
-"病程紀錄類(off service note)": json.dumps({
-                            "insert_datetime": combined_df.iloc[idx]['OFFSERVICENOTE_INSERTDATETIME'],
-                            "diagnosis": combined_df.iloc[idx]['OFFSERVICENOTE_DIAGNOSIS'],
-                            "brief_summary": combined_df.iloc[idx]['OFFSERVICENOTE_BRIEFSUMMARY'],
-                            "current_medication": combined_df.iloc[idx]['OFFSERVICENOTE_CURRENTMEDICATION'],
-                            "pap": combined_df.iloc[idx]['OFFSERVICENOTE_PAP']
-                        }, ensure_ascii=False, indent=2),
-"病程紀錄類(free note)": json.dumps({
-                            "insert_datetime": combined_df.iloc[idx]['BLANKNOTE_INSERTDATETIME'],
-                            "note_content": combined_df.iloc[idx]['NOTE_CONTENT']
-                        }, ensure_ascii=False, indent=2),
-"手術紀錄【手術日期、Operative Method】": json.dumps({
-                            "operation_date": combined_df.iloc[idx]['OPERATIONDATE'],
-                            "op_note_text": combined_df.iloc[idx]['OPNOTEVALUETEXT_y']
-                        }, ensure_ascii=False, indent=2),
-"會診單【醫師訪視時間、會診科部、診斷、建議】": json.dumps({
-                            "event_date": combined_df.iloc[idx]['EVENTDATE'],
-                            "assessment_note": combined_df.iloc[idx]['ASSESSMENTNOTE']
-                        }, ensure_ascii=False, indent=2),
-"最近一次weekly summary Brief Summary of this week": json.dumps(df.iloc[idx]['last_weekly_brief_summary'], ensure_ascii=False, indent=2),
-"醫師原本撰寫的diagnosis": json.dumps(df.iloc[idx]['DIAGNOSIS_x'], ensure_ascii=False, indent=2),
-"醫師原本撰寫的brief summary of this week": json.dumps(df.iloc[idx]['BRIEFSUMMARY'], ensure_ascii=False, indent=2),
+                            "PAP": df.iloc[idx]['PROGRESSNOTE_PAP']}, 
+"病程紀錄類(on service note)": {"insert_datetime": df.iloc[idx]['ONSERVICENOTE_INSERTDATETIME'],
+                            "diagnosis_and_history": df.iloc[idx]['ONSERVICENOTE_DIAGNOSISANDHISTORY'],
+                            "physical_exam_and_assessment": df.iloc[idx]['ONSERVICENOTE_PHYSICALEXAMANDASSESSMENT'],
+                            "current_medication": df.iloc[idx]['ONSERVICENOTE_CURRENTMEDICATION'],
+                            "pap": df.iloc[idx]['ONSERVICENOTE_PAP']}, 
+"病程紀錄類(off service note)": {"insert_datetime": df.iloc[idx]['OFFSERVICENOTE_INSERTDATETIME'],
+                            "diagnosis": df.iloc[idx]['OFFSERVICENOTE_DIAGNOSIS'],
+                            "brief_summary": df.iloc[idx]['OFFSERVICENOTE_BRIEFSUMMARY'],
+                            "current_medication": df.iloc[idx]['OFFSERVICENOTE_CURRENTMEDICATION'],
+                            "pap": df.iloc[idx]['OFFSERVICENOTE_PAP']}, 
+"病程紀錄類(free note)": {"insert_datetime": df.iloc[idx]['BLANKNOTE_INSERTDATETIME'],
+                        "note_content": df.iloc[idx]['NOTE_CONTENT']},
+"手術紀錄【手術日期、Operative Method】": {"operation_date": df.iloc[idx]['OPERATIONDATE'],
+                                    "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
+"會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
+                                    "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
+"最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], 
+"醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
+"醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
 }
 
 # 中間欄整理的病歷資訊
-diagnosis_text = json.dumps(df.iloc[idx]['LLM_DIAGNOSIS'], ensure_ascii=False)
-summary_text = json.dumps(df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK'], ensure_ascii=False)
+diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS'], 
+summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK'], 
 
 # 側邊欄輸入
 st.sidebar.title("工作區")
