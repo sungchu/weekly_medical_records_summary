@@ -19,17 +19,17 @@ department_notes = {
 "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
 "出院病摘【出院診斷】": df.iloc[idx]['CD'],
 "手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
-"病程紀錄【PAP之Problem】": json.dumps({
+"病程紀錄【PAP之Problem】": {
                             "progress_note": combined_df.iloc[idx]['progress_history'],
                             "on_service_note": combined_df.iloc[idx]['onservice_history'],
                             "off_service_note": combined_df.iloc[idx]['offservice_history']
-                        }, ensure_ascii=False, indent=2),
-"最近一次weekly summary diagnosis": json.dumps(df.iloc[idx]['last_week_diagnosis'], ensure_ascii=False),
-"入院紀錄【主訴、病史、醫療需求與治療計畫】": json.dumps({
+                        },
+"最近一次weekly summary diagnosis": df.iloc[idx]['last_week_diagnosis'],
+"入院紀錄【主訴、病史、醫療需求與治療計畫】": {
                             "主訴": combined_df.iloc[idx]['CC_CONTENT'],
                             "病史": combined_df.iloc[idx]['PH_CONTENT'],
                             "醫療需求與治療計畫": combined_df.iloc[idx]['PT_CONTENT']
-                        }, ensure_ascii=False, indent=2),
+                        },
 "病程紀錄類(progress note)": json.dumps({
                             "insert_datetime": combined_df.iloc[idx]['PROGRESSNOTE_INSERTDATETIME'],
                             "subjective": combined_df.iloc[idx]['PROGRESSNOTE_SUBJECTIVE'],
