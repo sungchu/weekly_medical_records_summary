@@ -10,7 +10,6 @@ scope = ['https://spreadsheets.google.com/feeds',
 creds = ServiceAccountCredentials.from_json_keyfile_dict(sa_json, scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("1wM-Q11flPuvorbjbmUcKLVbbSJKAegTxRvI_f-xiL9E").sheet1
-st.text(creds.service_account_email)
 
 # 設定頁面寬度
 st.set_page_config(layout="wide")
@@ -18,7 +17,7 @@ st.set_page_config(layout="wide")
 # 側邊欄輸入
 st.sidebar.title("工作區")
 user_id = st.sidebar.text_input("請輸入您的員工編號")
-dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部"])
+dept_choice = st.sidebar.selectbox("請選擇科部", ["內科部"])
 example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
 department_file = {"內科部": "filtered_MED.jsonl"}
