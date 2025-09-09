@@ -4,9 +4,10 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+sa_json = st.secrets["google_service_account"]
 scope = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']  # 可以同時存取 Drive
-creds = ServiceAccountCredentials.from_json_keyfile_name('googlesheetapi.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_dict(sa_json, scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("1wM-Q11flPuvorbjbmUcKLVbbSJKAegTxRvI_f-xiL9E").sheet1
 
