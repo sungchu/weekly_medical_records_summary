@@ -12,7 +12,7 @@ dept_choice = st.sidebar.selectbox("請選擇科室", ["內科部"])
 example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
 department_file = {"內科部": "filtered_MED.jsonl"}
-df = pd.read_json(department_file, lines=True)
+df = pd.read_json(department_file[dept_choice], lines=True)
 
 example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
 idx = example_to_idx[example_choice]
