@@ -233,7 +233,7 @@ with right_column:
         
         # 存入 google sheet
         submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_selected, Q8, Q9, Q10]
-        sheet.append_row(submission_data)
+        sheet.append_row(submission_data, value_input_option='RAW')
         
         st.success("問卷已提交！")
         st.write("### Diagnosis 評估結果")
