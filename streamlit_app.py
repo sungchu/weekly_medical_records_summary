@@ -232,7 +232,7 @@ with right_column:
     if st.button("提交問卷"):
         
         # 存入 google sheet
-        submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10]
+        submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_selected, Q8, Q9, Q10]
         sheet.append_row(submission_data)
         
         st.success("問卷已提交！")
