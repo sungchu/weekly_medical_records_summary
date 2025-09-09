@@ -63,8 +63,8 @@ department_notes = {
 }
 
 # 中間欄整理的病歷資訊
-diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS'], 
-summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK'], 
+diagnosis_text = st.text(df.iloc[idx]['LLM_DIAGNOSIS']), 
+summary_text = st.text(df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK']), 
 
 # 主區域顯示
 st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
