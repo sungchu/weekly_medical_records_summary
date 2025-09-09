@@ -16,9 +16,9 @@ df = pd.read_json("filtered_MED.jsonl", lines=True)
 idx = 0
 
 department_notes = {
-"入院紀錄【臆斷】": json.dumps(df.iloc[idx]['DEPT_CONTENT'], ensure_ascii=False),
-"出院病摘【出院診斷】": json.dumps(df.iloc[idx]['CD'], ensure_ascii=False),
-"手術紀錄【術後診斷】": json.dumps(df.iloc[idx]['OPNOTEVALUETEXT_x'], ensure_ascii=False),
+"入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
+"出院病摘【出院診斷】": df.iloc[idx]['CD'],
+"手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
 "病程紀錄【PAP之Problem】": json.dumps({
                             "progress_note": combined_df.iloc[idx]['progress_history'],
                             "on_service_note": combined_df.iloc[idx]['onservice_history'],
