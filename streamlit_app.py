@@ -10,7 +10,7 @@ scope = ['https://spreadsheets.google.com/feeds',
 creds = ServiceAccountCredentials.from_json_keyfile_dict(sa_json, scope)
 client = gspread.authorize(creds)
 sheet = client.open_by_key("1wM-Q11flPuvorbjbmUcKLVbbSJKAegTxRvI_f-xiL9E").sheet1
-
+st.text(creds.service_account_email)
 
 # 設定頁面寬度
 st.set_page_config(layout="wide")
