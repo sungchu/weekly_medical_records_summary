@@ -117,7 +117,7 @@ else:
                     # 如果是 dictionary
                     display_text = ""
                     for key, value in content.items():
-                        display_text += f"[{key}]\n{value}\n\n"
+                        display_text += f"【{key}】\n{value}\n\n"
                 else:
                     # 如果不是 dictionary，直接顯示文字
                     display_text = str(content)
