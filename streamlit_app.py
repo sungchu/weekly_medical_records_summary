@@ -15,16 +15,16 @@ sheet = client.open_by_key("1wM-Q11flPuvorbjbmUcKLVbbSJKAegTxRvI_f-xiL9E").sheet
 st.set_page_config(layout="wide")
 
 # 側邊欄輸入
-st.sidebar.title("工作區")
-user_id = st.sidebar.text_input("請輸入您的員工編號")
-dept_choice = st.sidebar.selectbox("請選擇科部", ["內科部"])
-example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
+#st.sidebar.title("工作區")
+#user_id = st.sidebar.text_input("請輸入您的員工編號")
+#dept_choice = st.sidebar.selectbox("請選擇科部", ["內科部"])
+#example_choice = st.sidebar.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
-department_file = {"內科部": "filtered_MED.jsonl"}
-df = pd.read_json(department_file[dept_choice], lines=True)
+#department_file = {"內科部": "filtered_MED.jsonl"}
+#df = pd.read_json(department_file[dept_choice], lines=True)
 
-example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
-idx = example_to_idx[example_choice]
+#example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
+#idx = example_to_idx[example_choice]
 
 # 模擬科室筆記
 departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
@@ -74,6 +74,29 @@ department_notes = {
 # 中間欄整理的病歷資訊
 diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
 summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK']
+
+# 在主頁面輸入員工編號
+user_id = st.text_input("請輸入您的員工編號")
+
+if not user_id:
+    st.warning("請先輸入員工編號")
+else:
+    # 在主頁面選擇科部
+    dept_choice = st.selectbox("請選擇科部", ["內科部"])
+
+    # 根據科部讀取對應檔案
+    department_file = {"內科部": "filtered_MED.jsonl"}
+    df = pd.read_json(department_file[dept_choice], lines=True)
+
+    # 在主頁面選擇範例
+    example_choice = st.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
+
+    # 範例對應索引
+    example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
+    idx = example_to_idx[example_choice]
+
+    # 顯示範例內容
+    st.write(df.iloc[idx])
 
 # 主區域顯示
 st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
@@ -143,11 +166,11 @@ with right_column:
         Q1 = st.radio(
             "",
             [
-                "完全包含，資訊完整且清楚",
-                "幾乎完整包含，資訊足夠理解診斷重點，可接受",
-                "大部分包含，仍有少量缺失",
-                "部分包含，但不足以理解全貌",
-                "幾乎完全未包含（幾乎沒有提供相關診斷資訊）"
+                "完整，資訊清楚",
+                "幾乎完整，可理解診斷重點",
+                "大部分包含，少量缺失",
+                "部分包含，不足以理解全貌",
+                "幾乎未包含"
             ], key="Q1"
         )
         
@@ -161,10 +184,10 @@ with right_column:
             "",
             [
                 "無明顯錯誤",
-                "僅有少量不影響理解的小錯",
-                "有部分錯誤，但整體仍可參考",
+                "小錯，不影響理解",
+                "部分錯誤，仍可參考",
                 "多處錯誤，可信度低",
-                "完全錯誤，有明顯事實性錯誤或誤導"
+                "完全錯誤或誤導"
             ], key="Q3"
         )
         
@@ -173,11 +196,11 @@ with right_column:
         Q4 = st.radio(
             "",
             [
-                "明顯太長，資訊過多冗贅",
-                "稍微太長，但可以接受",
-                "恰到好處",
-                "稍微太短，有些內容缺失",
-                "明顯太短，資訊不足"
+                "太長，資訊冗贅",
+                "稍長，可接受",
+                "剛好",
+                "稍短，有些內容缺失",
+                "太短，資訊不足"
             ], key="Q4"
         )
         
