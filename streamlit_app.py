@@ -49,227 +49,227 @@ else:
     # 顯示範例內容
     st.write(df.iloc[idx])
 
-# 模擬科室筆記
-departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
-                "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
-                "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
-                "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
-                "醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week"]
+    # 模擬科室筆記
+    departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
+                    "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
+                    "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
+                    "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
+                    "醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week"]
 
-department_notes = {
-"醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
-"醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
-"入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
-"出院病摘【出院診斷】": df.iloc[idx]['CD'],
-"手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
-"病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
-                        "on_service_note": df.iloc[idx]['onservice_history'],
-                        "off_service_note": df.iloc[idx]['offservice_history']},
-"最近一次weekly summary diagnosis": df.iloc[idx]['last_week_diagnosis'],
-"入院紀錄【主訴、病史、醫療需求與治療計畫】": {"主訴": df.iloc[idx]['CC_CONTENT'],
-                                    "病史": df.iloc[idx]['PH_CONTENT'],
-                                    "醫療需求與治療計畫": df.iloc[idx]['PT_CONTENT']},
-"病程紀錄類(progress note)": {"insert_datetime": df.iloc[idx]['PROGRESSNOTE_INSERTDATETIME'],
-                            "subjective": df.iloc[idx]['PROGRESSNOTE_SUBJECTIVE'],
-                            "objective": df.iloc[idx]['PROGRESSNOTE_OBJECTIVE'],
-                            "yesterday_summary": df.iloc[idx]['PROGRESSNOTE_YESTERDAYSUMMARY'],
-                            "bsibundle_reason": df.iloc[idx]['PROGRESSNOTE_BSIBUNDLE'],
-                            "PAP": df.iloc[idx]['PROGRESSNOTE_PAP']}, 
-"病程紀錄類(on service note)": {"insert_datetime": df.iloc[idx]['ONSERVICENOTE_INSERTDATETIME'],
-                            "diagnosis_and_history": df.iloc[idx]['ONSERVICENOTE_DIAGNOSISANDHISTORY'],
-                            "physical_exam_and_assessment": df.iloc[idx]['ONSERVICENOTE_PHYSICALEXAMANDASSESSMENT'],
-                            "current_medication": df.iloc[idx]['ONSERVICENOTE_CURRENTMEDICATION'],
-                            "pap": df.iloc[idx]['ONSERVICENOTE_PAP']}, 
-"病程紀錄類(off service note)": {"insert_datetime": df.iloc[idx]['OFFSERVICENOTE_INSERTDATETIME'],
-                            "diagnosis": df.iloc[idx]['OFFSERVICENOTE_DIAGNOSIS'],
-                            "brief_summary": df.iloc[idx]['OFFSERVICENOTE_BRIEFSUMMARY'],
-                            "current_medication": df.iloc[idx]['OFFSERVICENOTE_CURRENTMEDICATION'],
-                            "pap": df.iloc[idx]['OFFSERVICENOTE_PAP']}, 
-"病程紀錄類(free note)": {"insert_datetime": df.iloc[idx]['BLANKNOTE_INSERTDATETIME'],
-                        "note_content": df.iloc[idx]['NOTE_CONTENT']},
-"手術紀錄【手術日期、Operative Method】": {"operation_date": df.iloc[idx]['OPERATIONDATE'],
-                                    "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
-"會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
-                                    "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
-"最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], 
+    department_notes = {
+    "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
+    "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
+    "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
+    "出院病摘【出院診斷】": df.iloc[idx]['CD'],
+    "手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
+    "病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
+                            "on_service_note": df.iloc[idx]['onservice_history'],
+                            "off_service_note": df.iloc[idx]['offservice_history']},
+    "最近一次weekly summary diagnosis": df.iloc[idx]['last_week_diagnosis'],
+    "入院紀錄【主訴、病史、醫療需求與治療計畫】": {"主訴": df.iloc[idx]['CC_CONTENT'],
+                                        "病史": df.iloc[idx]['PH_CONTENT'],
+                                        "醫療需求與治療計畫": df.iloc[idx]['PT_CONTENT']},
+    "病程紀錄類(progress note)": {"insert_datetime": df.iloc[idx]['PROGRESSNOTE_INSERTDATETIME'],
+                                "subjective": df.iloc[idx]['PROGRESSNOTE_SUBJECTIVE'],
+                                "objective": df.iloc[idx]['PROGRESSNOTE_OBJECTIVE'],
+                                "yesterday_summary": df.iloc[idx]['PROGRESSNOTE_YESTERDAYSUMMARY'],
+                                "bsibundle_reason": df.iloc[idx]['PROGRESSNOTE_BSIBUNDLE'],
+                                "PAP": df.iloc[idx]['PROGRESSNOTE_PAP']}, 
+    "病程紀錄類(on service note)": {"insert_datetime": df.iloc[idx]['ONSERVICENOTE_INSERTDATETIME'],
+                                "diagnosis_and_history": df.iloc[idx]['ONSERVICENOTE_DIAGNOSISANDHISTORY'],
+                                "physical_exam_and_assessment": df.iloc[idx]['ONSERVICENOTE_PHYSICALEXAMANDASSESSMENT'],
+                                "current_medication": df.iloc[idx]['ONSERVICENOTE_CURRENTMEDICATION'],
+                                "pap": df.iloc[idx]['ONSERVICENOTE_PAP']}, 
+    "病程紀錄類(off service note)": {"insert_datetime": df.iloc[idx]['OFFSERVICENOTE_INSERTDATETIME'],
+                                "diagnosis": df.iloc[idx]['OFFSERVICENOTE_DIAGNOSIS'],
+                                "brief_summary": df.iloc[idx]['OFFSERVICENOTE_BRIEFSUMMARY'],
+                                "current_medication": df.iloc[idx]['OFFSERVICENOTE_CURRENTMEDICATION'],
+                                "pap": df.iloc[idx]['OFFSERVICENOTE_PAP']}, 
+    "病程紀錄類(free note)": {"insert_datetime": df.iloc[idx]['BLANKNOTE_INSERTDATETIME'],
+                            "note_content": df.iloc[idx]['NOTE_CONTENT']},
+    "手術紀錄【手術日期、Operative Method】": {"operation_date": df.iloc[idx]['OPERATIONDATE'],
+                                        "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
+    "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
+                                        "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
+    "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], 
 
-}
+    }
 
-# 中間欄整理的病歷資訊
-diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
-summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK']
+    # 中間欄整理的病歷資訊
+    diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
+    summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK']
 
-# 主區域顯示
-st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
+    # 主區域顯示
+    st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
 
-# 左、中、右三欄
-left_column, middle_column, right_column = st.columns([1.5, 2.5, 2])
+    # 左、中、右三欄
+    left_column, middle_column, right_column = st.columns([1.5, 2.5, 2])
 
-# 左欄：科室筆記
-with left_column:
-    st.header("參考資料")
-    for dept in departments:
-        with st.expander(dept):
-            st.text(department_notes[dept])
+    # 左欄：科室筆記
+    with left_column:
+        st.header("參考資料")
+        for dept in departments:
+            with st.expander(dept):
+                st.text(department_notes[dept])
 
-# 中間欄：整理後資訊
-with middle_column:
-    st.header("weekly summary")
-    st.subheader("Diagnosis")
-    st.text(diagnosis_text)
-    st.subheader("Brief Summary of This Week")
-    st.text(summary_text)
+    # 中間欄：整理後資訊
+    with middle_column:
+        st.header("weekly summary")
+        st.subheader("Diagnosis")
+        st.text(diagnosis_text)
+        st.subheader("Brief Summary of This Week")
+        st.text(summary_text)
 
-# 右欄：問卷調查
-with right_column:
-    st.header("問卷調查")
-    st.markdown(
-        """
-        <style>
-        /* 調整 radio 控件的問句字體大小 */
-        div[data-testid="stRadio"] > label:first-child {
-            font-size: 18px;  /* 問句大小 */
-            font-weight: bold;
-            margin-bottom: -5px;
-            margin-top: -5px;  /* 上方空白清除 */
-            padding-top: 0px; /* 內部 padding 清除 */
-        }
-        
-        /* st.text_area 標題 */
-        div[data-testid="stTextArea"] > label {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: -5px;
-        }
+    # 右欄：問卷調查
+    with right_column:
+        st.header("問卷調查")
+        st.markdown(
+            """
+            <style>
+            /* 調整 radio 控件的問句字體大小 */
+            div[data-testid="stRadio"] > label:first-child {
+                font-size: 18px;  /* 問句大小 */
+                font-weight: bold;
+                margin-bottom: -5px;
+                margin-top: -5px;  /* 上方空白清除 */
+                padding-top: 0px; /* 內部 padding 清除 */
+            }
+            
+            /* st.text_area 標題 */
+            div[data-testid="stTextArea"] > label {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: -5px;
+            }
 
-        /* 調整 radio 選項文字大小 */
-        div[data-testid="stRadio"] label[for^="radio"] {
-            font-size: 18px;  /* 選項大小 */
-        }
-        
-        /* 統一問句樣式 */
-        .question-text {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-    ##### Diagnosis 問卷 #####
-    with st.expander("Diagnosis 問卷"):
-        #Q1
-        st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
-        Q1 = st.radio(
-            "",
-            [
-                "完整，資訊清楚",
-                "幾乎完整，可理解診斷重點",
-                "大部分包含，少量缺失",
-                "部分包含，不足以理解全貌",
-                "幾乎未包含"
-            ], key="Q1"
+            /* 調整 radio 選項文字大小 */
+            div[data-testid="stRadio"] label[for^="radio"] {
+                font-size: 18px;  /* 選項大小 */
+            }
+            
+            /* 統一問句樣式 */
+            .question-text {
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            
+            
+            </style>
+            """,
+            unsafe_allow_html=True
         )
-        
-        #Q2
-        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
-        Q2 = st.text_area("", key="Q2_textarea")
-        
-        #Q3
-        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 正確性評估（請選最符合）</p>', unsafe_allow_html=True)
-        Q3 = st.radio(
-            "",
-            [
-                "無明顯錯誤",
-                "小錯，不影響理解",
-                "部分錯誤，仍可參考",
-                "多處錯誤，可信度低",
-                "完全錯誤或誤導"
-            ], key="Q3"
-        )
-        
-        #Q4
-        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
-        Q4 = st.radio(
-            "",
-            [
-                "太長，資訊冗贅",
-                "稍長，可接受",
-                "剛好",
-                "稍短，有些內容缺失",
-                "太短，資訊不足"
-            ], key="Q4"
-        )
-        
-        #Q5
-        st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
-        Q5 = st.text_area("", key="Q5_textarea")
-        
-        #Q6
-        st.write('<p class="question-text" style="margin-bottom:-30px;">6. 您對這段Diagnosis的整體滿意程度？</p>', unsafe_allow_html=True)
-        Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
 
-    ##### brief summary of this week 問卷 #####
-    with st.expander("Brief Summary of this week 問卷"):        
-        # Q1
-        st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
-        
-        ### 勾選選項
-        missing_info_options = [
-            "病情變化",
-            "重要處置、手術或檢查",
-            "呼吸護理調整（如呼吸機模式、撤機試驗）",
-            "藥物開始或停用（如抗生素、類固醇等）",
-            "藥物治療方案變化（如調整劑量、更換藥物種類）",
-            "臨床不良副作用及相關檢查（如肝腎功能異常、藥物過敏反應檢驗）",
-            "合併症或突發狀況（如感染、出血、急性器官衰竭）",
-            "目前狀態簡述（如意識狀態、生命徵象穩定度、飲食狀況）",
-            "臨床決策和管理變化（如加強監測、改變治療計畫）",
-            "實驗室檢查資料（如血液、尿液、培養結果等）",
-            "轉診或轉院計畫（如安排專科轉診、轉至加護病房）"
-        ]
-        
-        ### 用字典收集勾選結果
-        Q7_dict = {}
-        for option in missing_info_options:
-            Q7_dict[option] = st.checkbox(option)
-        Q7_selected = [k for k, v in Q7_dict.items() if v]
-        
-        #Q2
-        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
-        Q8 = st.text_area("", key="Q8_textarea")
-        
-        #Q3
-        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
-        Q9 = st.text_area("", key="Q9_textarea")
-        
-        #Q4
-        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
-        Q10 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q10")
+        ##### Diagnosis 問卷 #####
+        with st.expander("Diagnosis 問卷"):
+            #Q1
+            st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
+            Q1 = st.radio(
+                "",
+                [
+                    "完整，資訊清楚",
+                    "幾乎完整，可理解診斷重點",
+                    "大部分包含，少量缺失",
+                    "部分包含，不足以理解全貌",
+                    "幾乎未包含"
+                ], key="Q1"
+            )
+            
+            #Q2
+            st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
+            Q2 = st.text_area("", key="Q2_textarea")
+            
+            #Q3
+            st.write('<p class="question-text" style="margin-bottom:-30px;">3. 正確性評估（請選最符合）</p>', unsafe_allow_html=True)
+            Q3 = st.radio(
+                "",
+                [
+                    "無明顯錯誤",
+                    "小錯，不影響理解",
+                    "部分錯誤，仍可參考",
+                    "多處錯誤，可信度低",
+                    "完全錯誤或誤導"
+                ], key="Q3"
+            )
+            
+            #Q4
+            st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
+            Q4 = st.radio(
+                "",
+                [
+                    "太長，資訊冗贅",
+                    "稍長，可接受",
+                    "剛好",
+                    "稍短，有些內容缺失",
+                    "太短，資訊不足"
+                ], key="Q4"
+            )
+            
+            #Q5
+            st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
+            Q5 = st.text_area("", key="Q5_textarea")
+            
+            #Q6
+            st.write('<p class="question-text" style="margin-bottom:-30px;">6. 您對這段Diagnosis的整體滿意程度？</p>', unsafe_allow_html=True)
+            Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
 
-    # 提交按鈕
-    if st.button("提交問卷"):
-        
-        # 存入 google sheet
-        Q7_str = "\n".join(Q7_selected) # 多選題，原為list，轉為字串
-        submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_str, Q8, Q9, Q10]
-        sheet.append_row(submission_data, value_input_option='RAW')
-        
-        st.success("問卷已提交！")
-        st.write("### Diagnosis 評估結果")
-        st.write(f"1. 是否包含重要診斷：{Q1}")
-        st.write(f"2. 缺少的診斷內容：{Q2}")
-        st.write(f"3. 診斷正確性：{Q3}")
-        st.write(f"4. 診斷長度：{Q4}")
-        st.write(f"5. 診斷正確性以及長度的問題：{Q5}")
-        st.write(f"6. diagnosis整滿意度：{Q6}")
+        ##### brief summary of this week 問卷 #####
+        with st.expander("Brief Summary of this week 問卷"):        
+            # Q1
+            st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
+            
+            ### 勾選選項
+            missing_info_options = [
+                "病情變化",
+                "重要處置、手術或檢查",
+                "呼吸護理調整（如呼吸機模式、撤機試驗）",
+                "藥物開始或停用（如抗生素、類固醇等）",
+                "藥物治療方案變化（如調整劑量、更換藥物種類）",
+                "臨床不良副作用及相關檢查（如肝腎功能異常、藥物過敏反應檢驗）",
+                "合併症或突發狀況（如感染、出血、急性器官衰竭）",
+                "目前狀態簡述（如意識狀態、生命徵象穩定度、飲食狀況）",
+                "臨床決策和管理變化（如加強監測、改變治療計畫）",
+                "實驗室檢查資料（如血液、尿液、培養結果等）",
+                "轉診或轉院計畫（如安排專科轉診、轉至加護病房）"
+            ]
+            
+            ### 用字典收集勾選結果
+            Q7_dict = {}
+            for option in missing_info_options:
+                Q7_dict[option] = st.checkbox(option)
+            Q7_selected = [k for k, v in Q7_dict.items() if v]
+            
+            #Q2
+            st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
+            Q8 = st.text_area("", key="Q8_textarea")
+            
+            #Q3
+            st.write('<p class="question-text" style="margin-bottom:-30px;">3. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
+            Q9 = st.text_area("", key="Q9_textarea")
+            
+            #Q4
+            st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
+            Q10 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q10")
 
-        st.write("### Brief Summary 評估結果")
-        st.write(f"7. 缺少資訊：{'、'.join(Q7_selected)}")
-        st.write(f"8. 其他缺少資訊：{Q8}")
-        st.write(f"9. 科別需求說明：{Q9}")
-        st.write(f"10. brief summary整體滿意度：{Q10}")
+        # 提交按鈕
+        if st.button("提交問卷"):
+            
+            # 存入 google sheet
+            Q7_str = "\n".join(Q7_selected) # 多選題，原為list，轉為字串
+            submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_str, Q8, Q9, Q10]
+            sheet.append_row(submission_data, value_input_option='RAW')
+            
+            st.success("問卷已提交！")
+            st.write("### Diagnosis 評估結果")
+            st.write(f"1. 是否包含重要診斷：{Q1}")
+            st.write(f"2. 缺少的診斷內容：{Q2}")
+            st.write(f"3. 診斷正確性：{Q3}")
+            st.write(f"4. 診斷長度：{Q4}")
+            st.write(f"5. 診斷正確性以及長度的問題：{Q5}")
+            st.write(f"6. diagnosis整滿意度：{Q6}")
+
+            st.write("### Brief Summary 評估結果")
+            st.write(f"7. 缺少資訊：{'、'.join(Q7_selected)}")
+            st.write(f"8. 其他缺少資訊：{Q8}")
+            st.write(f"9. 科別需求說明：{Q9}")
+            st.write(f"10. brief summary整體滿意度：{Q10}")
