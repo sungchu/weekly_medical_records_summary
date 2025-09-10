@@ -123,7 +123,7 @@ else:
 
     # 右欄：問卷調查
     with right_column:
-        st.header("問卷調查")
+        st.header("醫師評審")
         st.markdown(
             """
             <style>
