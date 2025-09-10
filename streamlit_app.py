@@ -27,27 +27,28 @@ st.set_page_config(layout="wide")
 #idx = example_to_idx[example_choice]
 
 # 在主頁面輸入員工編號
-user_id = st.text_input("請輸入您的員工編號")
+col1, col2, col3, col4 = st.columns([1, 1, 1, 5])
+with col1:
+    user_id = st.text_input("請輸入您的員工編號")
 
 if not user_id:
     st.warning("請先輸入員工編號")
 else:
     # 在主頁面選擇科部
-    dept_choice = st.selectbox("請選擇科部", ["內科部"])
+    with col2:
+        dept_choice = st.selectbox("請選擇科部", ["內科部"])
 
     # 根據科部讀取對應檔案
     department_file = {"內科部": "filtered_MED.jsonl"}
     df = pd.read_json(department_file[dept_choice], lines=True)
 
     # 在主頁面選擇範例
-    example_choice = st.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
+    with col3:
+        example_choice = st.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
 
     # 範例對應索引
     example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
     idx = example_to_idx[example_choice]
-
-    # 顯示範例內容
-    st.write(df.iloc[idx])
 
     # 模擬科室筆記
     departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
@@ -100,7 +101,7 @@ else:
     summary_text = df.iloc[idx]['LLM_BRIEFSUMMARYOFTHISWEEK']
 
     # 主區域顯示
-    st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
+    #st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
 
     # 左、中、右三欄
     left_column, middle_column, right_column = st.columns([1.5, 2.5, 2])
