@@ -51,11 +51,12 @@ else:
     idx = example_to_idx[example_choice]
 
     # 模擬科室筆記
-    departments = ["入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
+    departments = ["醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week",
+                    "入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary diagnosis", 
                     "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
                     "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
                     "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
-                    "醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week"]
+                    ]
 
     department_notes = {
     "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
@@ -104,7 +105,7 @@ else:
     #st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
 
     # 左、中、右三欄
-    left_column, middle_column, right_column = st.columns([1.5, 2.5, 2])
+    left_column, middle_column, right_column = st.columns([2.5, 2.5, 2])
 
     # 左欄：科室筆記
     with left_column:
