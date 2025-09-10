@@ -112,7 +112,17 @@ else:
         st.header("參考資料")
         for dept in departments:
             with st.expander(dept):
-                st.text(department_notes[dept])
+                content = department_notes[dept]
+                if isinstance(content, dict):
+                    # 如果是 dictionary
+                    display_text = ""
+                    for key, value in content.items():
+                        display_text += f"[{key}]\n{value}\n\n"
+                else:
+                    # 如果不是 dictionary，直接顯示文字
+                    display_text = str(content)
+
+                st.text(display_text)
 
     # 中間欄：整理後資訊
     with middle_column:
