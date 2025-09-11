@@ -43,8 +43,8 @@ else:
 
     # 根據科部讀取對應檔案
     department_file = {"內科部": "filtered_MED.jsonl"}
-    #df = pd.read_json(department_file[dept_choice], lines=True)
-    df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
+    df = pd.read_json(department_file[dept_choice], lines=True)
+    #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
     with col3:
