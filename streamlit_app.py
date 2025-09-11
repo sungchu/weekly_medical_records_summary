@@ -163,7 +163,7 @@ else:
             
             /* 調整 checkbox 選項的字體與間距 */
             div[data-testid="stCheckbox"] {
-                margin-bottom: -2px;   /* 控制勾選框之間的距離，數字越小間距越小 */
+                margin-bottom: 0px;   /* 控制勾選框之間的距離，數字越小間距越小 */
             }
 
             div[data-testid="stCheckbox"] label {
