@@ -52,10 +52,10 @@ else:
 
     # 模擬科室筆記
     departments = ["醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week",
-                    "入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary: Diagnosis", 
+                    "入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary Diagnosis", 
                     "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
                     "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
-                    "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary: Brief Summary of this week",
+                    "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
                     ]
 
     department_notes = {
@@ -67,7 +67,7 @@ else:
     "病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
                             "on_service_note": df.iloc[idx]['onservice_history'],
                             "off_service_note": df.iloc[idx]['offservice_history']},
-    "最近一次weekly summary: Diagnosis": df.iloc[idx]['last_week_diagnosis'],
+    "最近一次weekly summary Diagnosis": df.iloc[idx]['last_week_diagnosis'],
     "入院紀錄【主訴、病史、醫療需求與治療計畫】": {"主訴": df.iloc[idx]['CC_CONTENT'],
                                         "病史": df.iloc[idx]['PH_CONTENT'],
                                         "醫療需求與治療計畫": df.iloc[idx]['PT_CONTENT']},
@@ -93,7 +93,7 @@ else:
                                         "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
-    "最近一次weekly summary: Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'],}
+    "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'],}
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
