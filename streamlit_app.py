@@ -95,7 +95,7 @@ else:
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
     "最近一次weekly summary - Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'],
-    "預測Diagnosis的prompt":df.iloc[idx]['DIAGNOSIS_x']}
+    "預測Diagnosis的prompt":""}
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
