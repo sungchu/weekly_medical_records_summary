@@ -112,25 +112,30 @@ else:
     # 左欄：科室筆記
     with left_column:
         st.header("參考資料")
+        
+        # 依序顯示各科室筆記
         for dept in departments:
             with st.expander(dept):
-                content = department_notes[dept]
+                content = department_notes.get(dept, "")
                 
                 if isinstance(content, dict):
-                    # 如果是 dictionary，就整理成文字再顯示
+                    # dictionary 內容整理成文字
                     display_text = ""
                     for key, value in content.items():
                         display_text += f"【{key}】\n{value}\n\n"
                     st.text(display_text)
-
                 else:
-                    # 如果是長的 prompt，用 st.code 比較清楚
+                    # prompt 顯示為 code，其他用 text
                     if "prompt" in dept:
                         st.code(str(content), language="markdown")
                     else:
                         st.text(str(content))
         
-        # 在左欄底部加入下拉選單
+        # 左欄底部單獨加入預測Diagnosis的prompt
+        # 先確保 department_notes 裡有這個 key
+        if "預測Diagnosis的prompt" not in department_notes:
+            department_notes["預測Diagnosis的prompt"] = ""  # 或預設文字
+        
         with st.expander("預測Diagnosis的prompt", expanded=False):
             st.text(department_notes.get("預測Diagnosis的prompt", ""))
 
