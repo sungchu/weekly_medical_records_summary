@@ -267,7 +267,7 @@ else:
         )
 
         #Q2
-        st.write('<p class="question-text" style="margin-bottom:-20px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-10px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
         Q2 = st.text_area("Q2_label", key="Q2_textarea", label_visibility="collapsed")
 
         #Q3
@@ -297,7 +297,7 @@ else:
         )
 
         #Q5
-        st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-10px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
         Q5 = st.text_area("Q5_label", key="Q5_textarea", label_visibility="collapsed")
 
         #Q6
@@ -332,7 +332,7 @@ else:
         Q7_selected = [k for k, v in Q7_dict.items() if v]
 
         #Q2
-        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-10px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
         Q8 = st.text_area("Q8_label", key="Q8_textarea", label_visibility="collapsed")
 
         #Q3
@@ -348,7 +348,7 @@ else:
         )
 
         #Q4
-        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-10px;">4. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
         Q10 = st.text_area("Q10_label", key="Q10_textarea", label_visibility="collapsed")
 
         #Q5
