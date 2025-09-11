@@ -267,7 +267,7 @@ else:
         )
 
         #Q2
-        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-20px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
         Q2 = st.text_area("Q2_label", key="Q2_textarea", label_visibility="collapsed")
 
         #Q3
