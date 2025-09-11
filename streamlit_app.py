@@ -157,6 +157,8 @@ else:
             /* 調整 radio 選項文字大小 */
             div[data-testid="stRadio"] label[for^="radio"] {
                 font-size: 18px;  /* 選項大小 */
+                line-height: 1.2;      /* 行距，數字越小間距越小 */
+                margin-bottom: -4px;   /* 減少選項間距 */
             }
             
             /* 統一問句樣式 */
@@ -173,95 +175,108 @@ else:
         )
 
         ##### Diagnosis 問卷 #####
-        with st.expander("Diagnosis 問卷"):
-            #Q1
-            st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
-            Q1 = st.radio(
-                "",
-                [
-                    "完整，資訊清楚",
-                    "幾乎完整，可理解診斷重點",
-                    "大部分包含，少量缺失",
-                    "部分包含，不足以理解全貌",
-                    "幾乎未包含"
-                ], key="Q1"
-            )
-            
-            #Q2
-            st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
-            Q2 = st.text_area("", key="Q2_textarea")
-            
-            #Q3
-            st.write('<p class="question-text" style="margin-bottom:-30px;">3. 正確性評估（請選最符合）</p>', unsafe_allow_html=True)
-            Q3 = st.radio(
-                "",
-                [
-                    "無明顯錯誤",
-                    "小錯，不影響理解",
-                    "部分錯誤，仍可參考",
-                    "多處錯誤，可信度低",
-                    "完全錯誤或誤導"
-                ], key="Q3"
-            )
-            
-            #Q4
-            st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
-            Q4 = st.radio(
-                "",
-                [
-                    "太長，資訊冗贅",
-                    "稍長，可接受",
-                    "剛好",
-                    "稍短，有些內容缺失",
-                    "太短，資訊不足"
-                ], key="Q4"
-            )
-            
-            #Q5
-            st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
-            Q5 = st.text_area("", key="Q5_textarea")
-            
-            #Q6
-            st.write('<p class="question-text" style="margin-bottom:-30px;">6. 您對這段Diagnosis的整體滿意程度？</p>', unsafe_allow_html=True)
-            Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
+        st.subheader("Diagnosis 問卷"):
+        #Q1
+        st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
+        Q1 = st.radio(
+            "",
+            [
+                "完整，資訊清楚",
+                "幾乎完整，可理解診斷重點",
+                "大部分包含，少量缺失",
+                "部分包含，不足以理解全貌",
+                "幾乎未包含"
+            ], key="Q1"
+        )
+        
+        #Q2
+        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
+        Q2 = st.text_area("", key="Q2_textarea")
+        
+        #Q3
+        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 正確性評估（請選最符合）</p>', unsafe_allow_html=True)
+        Q3 = st.radio(
+            "",
+            [
+                "無明顯錯誤",
+                "小錯，不影響理解",
+                "部分錯誤，仍可參考",
+                "多處錯誤，可信度低",
+                "完全錯誤或誤導"
+            ], key="Q3"
+        )
+        
+        #Q4
+        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
+        Q4 = st.radio(
+            "",
+            [
+                "太長，資訊冗贅",
+                "稍長，可接受",
+                "剛好",
+                "稍短，有些內容缺失",
+                "太短，資訊不足"
+            ], key="Q4"
+        )
+        
+        #Q5
+        st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
+        Q5 = st.text_area("", key="Q5_textarea")
+        
+        #Q6
+        st.write('<p class="question-text" style="margin-bottom:-30px;">6. 您對這段Diagnosis的整體滿意程度？</p>', unsafe_allow_html=True)
+        Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
 
         ##### brief summary of this week 問卷 #####
-        with st.expander("Brief Summary of this week 問卷"):        
-            # Q1
-            st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
-            
-            ### 勾選選項
-            missing_info_options = [
-                "病情變化",
-                "重要處置、手術或檢查",
-                "呼吸護理調整（如呼吸機模式、撤機試驗）",
-                "藥物開始或停用（如抗生素、類固醇等）",
-                "藥物治療方案變化（如調整劑量、更換藥物種類）",
-                "臨床不良副作用及相關檢查（如肝腎功能異常、藥物過敏反應檢驗）",
-                "合併症或突發狀況（如感染、出血、急性器官衰竭）",
-                "目前狀態簡述（如意識狀態、生命徵象穩定度、飲食狀況）",
-                "臨床決策和管理變化（如加強監測、改變治療計畫）",
-                "實驗室檢查資料（如血液、尿液、培養結果等）",
-                "轉診或轉院計畫（如安排專科轉診、轉至加護病房）"
-            ]
-            
-            ### 用字典收集勾選結果
-            Q7_dict = {}
-            for option in missing_info_options:
-                Q7_dict[option] = st.checkbox(option)
-            Q7_selected = [k for k, v in Q7_dict.items() if v]
-            
-            #Q2
-            st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
-            Q8 = st.text_area("", key="Q8_textarea")
-            
-            #Q3
-            st.write('<p class="question-text" style="margin-bottom:-30px;">3. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
-            Q9 = st.text_area("", key="Q9_textarea")
-            
-            #Q4
-            st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
-            Q10 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q10")
+        st.subheader("Brief Summary of this week 問卷"):        
+        # Q1
+        st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
+        
+        ### 勾選選項
+        missing_info_options = [
+            "病情變化",
+            "重要處置、手術或檢查",
+            "呼吸護理調整（如呼吸機模式、撤機試驗）",
+            "藥物開始或停用（如抗生素、類固醇等）",
+            "藥物治療方案變化（如調整劑量、更換藥物種類）",
+            "臨床不良副作用及相關檢查（如肝腎功能異常、藥物過敏反應檢驗）",
+            "合併症或突發狀況（如感染、出血、急性器官衰竭）",
+            "目前狀態簡述（如意識狀態、生命徵象穩定度、飲食狀況）",
+            "臨床決策和管理變化（如加強監測、改變治療計畫）",
+            "實驗室檢查資料（如血液、尿液、培養結果等）",
+            "轉診或轉院計畫（如安排專科轉診、轉至加護病房）"
+        ]
+        
+        ### 用字典收集勾選結果
+        Q7_dict = {}
+        for option in missing_info_options:
+            Q7_dict[option] = st.checkbox(option)
+        Q7_selected = [k for k, v in Q7_dict.items() if v]
+        
+        #Q2
+        st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
+        Q8 = st.text_area("", key="Q8_textarea")
+        
+        #Q3
+        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
+        Q9 = st.radio(
+            "",
+            [
+                "太長，資訊冗贅",
+                "稍長，可接受",
+                "剛好",
+                "稍短，有些內容缺失",
+                "太短，資訊不足"
+            ], key="Q4"
+        )
+        
+        #Q4
+        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
+        Q10 = st.text_area("", key="Q9_textarea")
+        
+        #Q5
+        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
+        Q11 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q10")
 
         # 提交按鈕
         if st.button("提交問卷"):
