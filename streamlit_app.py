@@ -258,7 +258,7 @@ else:
         Q8 = st.text_area("", key="Q8_textarea")
         
         #Q3
-        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
+        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
         Q9 = st.radio(
             "",
             [
@@ -267,23 +267,23 @@ else:
                 "剛好",
                 "稍短，有些內容缺失",
                 "太短，資訊不足"
-            ], key="Q4"
+            ], key="Q9"
         )
         
         #Q4
-        st.write('<p class="question-text" style="margin-bottom:-30px;">3. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
-        Q10 = st.text_area("", key="Q9_textarea")
+        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
+        Q10 = st.text_area("", key="Q10_textarea")
         
         #Q5
-        st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
-        Q11 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q10")
+        st.write('<p class="question-text" style="margin-bottom:-30px;">5. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
+        Q11 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q11")
 
         # 提交按鈕
         if st.button("提交問卷"):
             
             # 存入 google sheet
             Q7_str = "\n".join(Q7_selected) # 多選題，原為list，轉為字串
-            submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_str, Q8, Q9, Q10]
+            submission_data = [user_id, dept_choice, example_choice, Q1, Q2, Q3, Q4, Q5, Q6, Q7_str, Q8, Q9, Q10, Q11]
             sheet.append_row(submission_data, value_input_option='RAW')
             
             st.success("問卷已提交！")
@@ -298,5 +298,6 @@ else:
             st.write("### Brief Summary 評估結果")
             st.write(f"7. 缺少資訊：{'、'.join(Q7_selected)}")
             st.write(f"8. 其他缺少資訊：{Q8}")
-            st.write(f"9. 科別需求說明：{Q9}")
-            st.write(f"10. brief summary整體滿意度：{Q10}")
+            st.write(f"9. 其他缺少資訊：{Q9}")
+            st.write(f"10. 科別需求說明：{Q10}")
+            st.write(f"11. brief summary整體滿意度：{Q11}")
