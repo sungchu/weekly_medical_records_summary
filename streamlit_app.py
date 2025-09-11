@@ -129,10 +129,8 @@ else:
                         st.text(str(content))
         
         # 在左欄底部加入下拉選單
-        predicted_diagnosis_prompt = st.selectbox(
-            "預測Diagnosis的prompt",
-            [department_notes.get("預測Diagnosis的prompt", "測試測試")]  # 目前只有一個 prompt，可以改成 list 多選
-        )
+        with st.expander("預測Diagnosis的prompt", expanded=False):
+        st.text(department_notes.get("預測Diagnosis的prompt", ""))
 )
 
     # 中間欄：整理後資訊
