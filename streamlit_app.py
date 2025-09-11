@@ -135,17 +135,6 @@ else:
                     for key, value in content.items():
                         display_text += f"【{key}】\n{value}\n\n"
                     st.text(display_text)
-                else:
-                    # prompt 顯示為 code，其他用 text
-                    if "prompt" in dept:
-                        st.code(str(content), language="markdown")
-                    else:
-                        st.text(str(content))
-        
-        # 左欄底部單獨加入預測Diagnosis的prompt
-        # 先確保 department_notes 裡有這個 key
-        if "預測Diagnosis的prompt" not in department_notes:
-            department_notes["預測Diagnosis的prompt"] = ""  # 或預設文字
         
         with st.expander("預測Diagnosis的prompt", expanded=False):
             st.text(department_notes.get("預測Diagnosis的prompt", """
@@ -230,7 +219,7 @@ else:
             div[data-testid="stTextArea"] > label {
                 font-size: 18px;
                 font-weight: bold;
-                margin-bottom: -2px;
+                margin-bottom: -4px;
             }
 
             /* === Radio 選項樣式 === */
