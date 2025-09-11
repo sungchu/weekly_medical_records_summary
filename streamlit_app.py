@@ -94,7 +94,62 @@ else:
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
     "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], 
+    "預測Diagnosis的prompt":"""
+    Given the following information from the current hospitalization:
+    - The most recent weekly summary written during this admission.
+    - The admission note for this admission.
+    - All inter-ward discharge summaries (if any).
+    - All operative records available up to the time of writing.
+    - Progress notes, on-service notes, and off-service notes from the 7 days prior to the note-writing date.
 
+    Generate a medically concise weekly inpatient summary.
+
+    Requirements:
+    - Present the summary in bullet point format, each starting with #.
+    - Each bullet must be a short, self-contained clinical statement.
+    - Focus only on: diagnosis, significant clinical events, procedures performed, response to treatment, and current condition.
+    - Omit any statements that simply indicate 'no events', 'nil', or 'no changes'.
+    - Do not use labels such as 'Main diagnosis' or 'Procedures performed'.
+    - Keep the wording concise and factual.
+    """, 
+    "預測Brief summary of this week的prompt":"""
+    [System]You are a clinical documentation assistant.
+
+    Given the following input data:
+    - Weekly summary
+    - Current admission note
+    - Progress notes from the past up to 7 days (may be fewer)
+    - All operative records up to the weekly note
+    - All consultation notes up to the weekly note
+    - The diagnosis summary predicted by the language model
+
+    Generate a weekly inpatient summary written as a concise narrative paragraph.
+    Focus ONLY on the events from THIS WEEK, not the entire hospitalization.
+    Do not include admission history or events from previous weeks unless directly relevant to this week's status.
+
+    Instructions:
+    - Write the weekly summary as a short narrative paragraph (3-5 sentences).
+    - Avoid date-by-date recounting; instead, summarize this week¡¦s clinical course in natural flow.
+    - Clearly mention the date of each clinical event within the sentence using the MM/DD format (e.g., \"on 09/21\", \"by 09/23\").
+    - Present the information in chronological order, combining daily clinical events into a readable, natural-flow paragraph.
+    - Include key clinical events such as: changes in condition, procedures, treatments, labs, imaging, cultures, decision-making, and transfers.
+    - Be concise, medically accurate, and avoid unnecessary repetition.
+    - Do not expand into full discharge summaries or unrelated comorbidities.
+    - If multiple events happen on the same day, combine them into the same sentence or paragraph segment.
+    - If a date has no meaningful clinical event, omit it from the narrative.
+    - Style should resemble a physician¡¦s weekly progress summary like examples below.
+
+    Example output 1:
+    After admission to intensive care unit, fluid supplementation, inhalation therapy, and symptomatic medications were initiated. FilmArray respiratory panel was positive for parainfluenza virus type 2; thus, antibiotics were not administered. The patient was kept NPO on 2025/04/29 due to respiratory distress, but feeding was resumed that night and was well tolerated. Subcostal retractions improved with HFNC support (17L/min, FiO 0.21), and he could tolerate room air without HFNC support since 2025/04/30. Under a relatively stable clinical condition, the patient was transferred to the general ward on 2025/05/01. After transferral to general ward, we kept routine bronchodilator, mucolytic agent and the usage of nebulizer. 
+
+    Example output 2:
+    This week, the patient kept receiving physical therapy. On 5/2, the lab data revealed no elevation on Ca2+, the TSH was still pending. The CXR revealed no obvious opacity. In light of suspected subclinical hypothyroidism, the amiodarone was switched to dronedarone. Next week, the lab data will be rechecked again to follow up previous hypercalemia or hypothyroidism. 
+
+    Example output 3:
+    After admission, we adjusted her medication into lamotrigine 100mg, abilify 5mg, fluoxetine 40mg and seroquel XR 50mg. The patient had close but tensed relationship with her mother, and her mother's anxiety triggers the patient's guilt as well. We suggested long-term personal and parent-child psychotherapy in the future. Currently, we'll close monitor her mood symptoms and adjust the medication accordingly.
+
+    Only output the final narrative. Do not explain your reasoning.
+    """, 
     }
 
     # 中間欄整理的病歷資訊
