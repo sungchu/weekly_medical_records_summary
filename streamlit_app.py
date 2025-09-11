@@ -161,6 +161,16 @@ else:
                 margin-bottom: -4px;   /* 減少選項間距 */
             }
             
+            /* 調整 checkbox 選項的字體與間距 */
+            div[data-testid="stCheckbox"] {
+                margin-bottom: -2px;   /* 控制勾選框之間的距離，數字越小間距越小 */
+            }
+
+            div[data-testid="stCheckbox"] label {
+                font-size: 16px;       /* 調整文字大小 */
+                line-height: 1.2;      /* 控制文字行距 */
+            }
+            
             /* 統一問句樣式 */
             .question-text {
                 font-size: 18px;
