@@ -55,7 +55,7 @@ else:
     idx = example_to_idx[example_choice]
 
     # 模擬科室筆記
-    original_departments = [
+    departments = [
         "醫師原本撰寫的diagnosis",
         "醫師原本撰寫的brief summary of this week",
         "入院紀錄【臆斷】",
@@ -72,7 +72,7 @@ else:
         "會診單【醫師訪視時間、會診科部、診斷、建議】",
         "最近一次weekly summary Brief Summary of this week",
     ]
-    departments = [dept for dept in original_departments if dept in department_notes]
+
     department_notes = {
     "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
