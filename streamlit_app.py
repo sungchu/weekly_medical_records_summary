@@ -138,51 +138,50 @@ else:
         st.markdown(
             """
             <style>
-            /* 調整 radio 控件的問句字體大小 */
+            /* === Radio 問句樣式 === */
             div[data-testid="stRadio"] > label:first-child {
-                font-size: 18px;  /* 問句大小 */
+                font-size: 18px;      /* 問句大小 */
                 font-weight: bold;
                 margin-bottom: -5px;
-                margin-top: -5px;  /* 上方空白清除 */
-                padding-top: 0px; /* 內部 padding 清除 */
+                margin-top: -5px;     /* 上方空白清除 */
+                padding-top: 0px;     /* 內部 padding 清除 */
             }
-            
-            /* st.text_area 標題 */
+
+            /* === TextArea 標題樣式 === */
             div[data-testid="stTextArea"] > label {
                 font-size: 18px;
                 font-weight: bold;
                 margin-bottom: -5px;
             }
 
-            /* 調整 radio 選項文字大小 */
+            /* === Radio 選項樣式 === */
             div[data-testid="stRadio"] label[for^="radio"] {
-                font-size: 18px;  /* 選項大小 */
-                line-height: 1;      /* 行距，數字越小間距越小 */
-                margin-bottom: -4px;   /* 減少選項間距 */
+                font-size: 18px;      /* 選項文字大小 */
+                line-height: 1.2;     /* 行距 */
+                margin-bottom: -4px;  /* 減少選項間距 */
             }
-            
-            /* 調整 checkbox 選項的字體與間距 */
+
+            /* === Checkbox 選項樣式 === */
             div[data-testid="stCheckbox"] {
-                margin-bottom: 0px;   /* 控制勾選框之間的距離，數字越小間距越小 */
+                margin-bottom: -2px;  /* 減少勾選框間距 */
             }
 
             div[data-testid="stCheckbox"] label {
-                font-size: 16px;       /* 調整文字大小 */
-                line-height: 0.5;      /* 控制文字行距 */
+                font-size: 16px;      /* 選項文字大小 */
+                line-height: 1.2;     /* 行距 */
             }
-            
-            /* 統一問句樣式 */
+
+            /* === 統一問句樣式 === */
             .question-text {
                 font-size: 18px;
                 font-weight: bold;
                 margin-bottom: 5px;
             }
-            
-            
             </style>
             """,
             unsafe_allow_html=True
         )
+
 
         ##### Diagnosis 問卷 #####
         st.subheader("Diagnosis 問卷")
