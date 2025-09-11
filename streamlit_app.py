@@ -4,7 +4,8 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os
-os.environ["STREAMLIT_SERVER_RUNONSAVE"] = "false"
+#os.environ["STREAMLIT_SERVER_RUNONSAVE"] = "false"
+base_dir = os.path.dirname(__file__)
 
 sa_json = st.secrets["google_service_account"]
 scope = ['https://spreadsheets.google.com/feeds',
@@ -41,8 +42,9 @@ else:
         dept_choice = st.selectbox("請選擇科部", ["內科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"內科部": "data/filtered_MED.jsonl"}
+    department_file = {"內科部": "filtered_MED.jsonl"}
     df = pd.read_json(department_file[dept_choice], lines=True)
+    df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
     with col3:
