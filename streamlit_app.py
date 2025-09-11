@@ -163,7 +163,7 @@ else:
 
             /* === Checkbox 選項樣式 === */
             div[data-testid="stCheckbox"] {
-                margin-bottom: -2px;  /* 減少勾選框間距 */
+                margin-bottom: -4px;  /* 減少勾選框間距 */
             }
 
             div[data-testid="stCheckbox"] label {
