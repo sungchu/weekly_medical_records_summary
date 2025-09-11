@@ -94,7 +94,7 @@ else:
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
     "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], }
-prompt1 = """
+    "預測Diagnosis的prompt":"""
     Given the following information from the current hospitalization:
     - The most recent weekly summary written during this admission.
     - The admission note for this admission.
@@ -111,8 +111,8 @@ prompt1 = """
     - Omit any statements that simply indicate 'no events', 'nil', or 'no changes'.
     - Do not use labels such as 'Main diagnosis' or 'Procedures performed'.
     - Keep the wording concise and factual.
-    """
-prompt1 = """
+    """, 
+    "預測Brief summary of this week的prompt":"""
     [System]You are a clinical documentation assistant.
 
     Given the following input data:
@@ -149,7 +149,8 @@ prompt1 = """
     After admission, we adjusted her medication into lamotrigine 100mg, abilify 5mg, fluoxetine 40mg and seroquel XR 50mg. The patient had close but tensed relationship with her mother, and her mother's anxiety triggers the patient's guilt as well. We suggested long-term personal and parent-child psychotherapy in the future. Currently, we'll close monitor her mood symptoms and adjust the medication accordingly.
 
     Only output the final narrative. Do not explain your reasoning.
-    """
+    """, 
+    }
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
@@ -167,20 +168,20 @@ prompt1 = """
         for dept in departments:
             with st.expander(dept):
                 content = department_notes[dept]
+                
                 if isinstance(content, dict):
-                    # 如果是 dictionary
+                    # 如果是 dictionary，就整理成文字再顯示
                     display_text = ""
                     for key, value in content.items():
                         display_text += f"【{key}】\n{value}\n\n"
-                else:
-                    # 如果不是 dictionary，直接顯示文字
-                    display_text = str(content)
+                    st.text(display_text)
 
-                st.text(display_text)
-                st.text(prompt2)
-        st.expander("prompt1")
-        st.expander(prompt2)
-                
+                else:
+                    # 如果是長的 prompt，用 st.code 比較清楚
+                    if "prompt" in dept:
+                        st.code(str(content), language="markdown")
+                    else:
+                        st.text(str(content))
 
     # 中間欄：整理後資訊
     with middle_column:
