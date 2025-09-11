@@ -157,7 +157,7 @@ else:
             /* 調整 radio 選項文字大小 */
             div[data-testid="stRadio"] label[for^="radio"] {
                 font-size: 18px;  /* 選項大小 */
-                line-height: 1.2;      /* 行距，數字越小間距越小 */
+                line-height: 1;      /* 行距，數字越小間距越小 */
                 margin-bottom: -4px;   /* 減少選項間距 */
             }
             
@@ -168,7 +168,7 @@ else:
 
             div[data-testid="stCheckbox"] label {
                 font-size: 16px;       /* 調整文字大小 */
-                line-height: 1.2;      /* 控制文字行距 */
+                line-height: 1;      /* 控制文字行距 */
             }
             
             /* 統一問句樣式 */
