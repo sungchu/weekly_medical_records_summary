@@ -131,7 +131,6 @@ else:
         # 在左欄底部加入下拉選單
         with st.expander("預測Diagnosis的prompt", expanded=False):
         st.text(department_notes.get("預測Diagnosis的prompt", ""))
-)
 
     # 中間欄：整理後資訊
     with middle_column:
