@@ -56,7 +56,6 @@ else:
                     "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
                     "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
                     "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
-                    "預測Diagnosis的prompt", "預測Brief summary of this week的prompt"
                     ]
 
     department_notes = {
@@ -94,8 +93,8 @@ else:
                                         "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
-    "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], 
-    "預測Diagnosis的prompt":"""
+    "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], }
+prompt1 = """
     Given the following information from the current hospitalization:
     - The most recent weekly summary written during this admission.
     - The admission note for this admission.
@@ -112,8 +111,8 @@ else:
     - Omit any statements that simply indicate 'no events', 'nil', or 'no changes'.
     - Do not use labels such as 'Main diagnosis' or 'Procedures performed'.
     - Keep the wording concise and factual.
-    """, 
-    "預測Brief summary of this week的prompt":"""
+    """
+prompt1 = """
     [System]You are a clinical documentation assistant.
 
     Given the following input data:
@@ -150,8 +149,7 @@ else:
     After admission, we adjusted her medication into lamotrigine 100mg, abilify 5mg, fluoxetine 40mg and seroquel XR 50mg. The patient had close but tensed relationship with her mother, and her mother's anxiety triggers the patient's guilt as well. We suggested long-term personal and parent-child psychotherapy in the future. Currently, we'll close monitor her mood symptoms and adjust the medication accordingly.
 
     Only output the final narrative. Do not explain your reasoning.
-    """, 
-    }
+    """
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
@@ -179,6 +177,9 @@ else:
                     display_text = str(content)
 
                 st.text(display_text)
+        st.expander(prompt1)
+        st.expander(prompt2)
+                
 
     # 中間欄：整理後資訊
     with middle_column:
