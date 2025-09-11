@@ -127,10 +127,12 @@ else:
                         st.code(str(content), language="markdown")
                     else:
                         st.text(str(content))
-                        
-        selected_option = st.selectbox(
-                "預測Diagnosis的prompt",  # 標題
-                [""]  # 選項內容，目前只有空白
+        
+        # 在左欄底部加入下拉選單
+        predicted_diagnosis_prompt = st.selectbox(
+            "預測Diagnosis的prompt",
+            [department_notes.get("預測Diagnosis的prompt", "")]  # 目前只有一個 prompt，可以改成 list 多選
+        )
 )
 
     # 中間欄：整理後資訊
