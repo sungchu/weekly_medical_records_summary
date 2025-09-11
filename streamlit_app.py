@@ -56,7 +56,6 @@ else:
                     "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
                     "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
                     "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary - Brief Summary of this week",
-                    "預測Diagnosis的prompt", "預測Brief summary of this week的prompt"
                     ]
 
     department_notes = {
@@ -94,8 +93,7 @@ else:
                                         "op_note_text": df.iloc[idx]['OPNOTEVALUETEXT_y']}, 
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
-    "最近一次weekly summary - Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'],
-    "預測Diagnosis的prompt":""}
+    "最近一次weekly summary - Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'],}
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
