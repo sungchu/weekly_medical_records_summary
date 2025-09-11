@@ -210,7 +210,7 @@ else:
             div[data-testid="stRadio"] > label:first-child {
                 font-size: 18px;      /* 問句大小 */
                 font-weight: bold;
-                margin-bottom: -5px;
+                margin-bottom: 0px;
                 margin-top: -5px;     /* 上方空白清除 */
                 padding-top: 0px;     /* 內部 padding 清除 */
             }
