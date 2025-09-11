@@ -55,13 +55,24 @@ else:
     idx = example_to_idx[example_choice]
 
     # 模擬科室筆記
-    departments = ["醫師原本撰寫的diagnosis", "醫師原本撰寫的brief summary of this week",
-                    "入院紀錄【臆斷】", "出院病摘【出院診斷】", "手術紀錄【術後診斷】", "病程紀錄【PAP之Problem】", "最近一次weekly summary Diagnosis", 
-                    "入院紀錄【主訴、病史、醫療需求與治療計畫】", "病程紀錄類(progress note)", "病程紀錄類(on service note)",
-                    "病程紀錄類(off service note)", "病程紀錄類(free note)", "手術紀錄【手術日期、Operative Method】",
-                    "會診單【醫師訪視時間、會診科部、診斷、建議】", "最近一次weekly summary Brief Summary of this week",
-                    ]
-
+    original_departments = [
+        "醫師原本撰寫的diagnosis",
+        "醫師原本撰寫的brief summary of this week",
+        "入院紀錄【臆斷】",
+        "出院病摘【出院診斷】",
+        "手術紀錄【術後診斷】",
+        "病程紀錄【PAP之Problem】",
+        "最近一次weekly summary Diagnosis",
+        "入院紀錄【主訴、病史、醫療需求與治療計畫】",
+        "病程紀錄類(progress note)",
+        "病程紀錄類(on service note)",
+        "病程紀錄類(off service note)",
+        "病程紀錄類(free note)",
+        "手術紀錄【手術日期、Operative Method】",
+        "會診單【醫師訪視時間、會診科部、診斷、建議】",
+        "最近一次weekly summary Brief Summary of this week",
+    ]
+    departments = [dept for dept in original_departments if dept in department_notes]
     department_notes = {
     "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
