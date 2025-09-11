@@ -192,60 +192,61 @@ else:
         #Q1
         st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
         Q1 = st.radio(
-            "",
+            "Q1_label",  # 真實 label
             [
                 "完整，資訊清楚",
                 "幾乎完整，可理解診斷重點",
                 "大部分包含，少量缺失",
                 "部分包含，不足以理解全貌",
                 "幾乎未包含"
-            ], key="Q1"
+            ], key="Q1", label_visibility="collapsed"
         )
-        
+
         #Q2
         st.write('<p class="question-text" style="margin-bottom:-30px;">2. 如果有缺少診斷，請簡述缺少的內容：</p>', unsafe_allow_html=True)
-        Q2 = st.text_area("", key="Q2_textarea")
-        
+        Q2 = st.text_area("Q2_label", key="Q2_textarea", label_visibility="collapsed")
+
         #Q3
         st.write('<p class="question-text" style="margin-bottom:-30px;">3. 正確性評估（請選最符合）</p>', unsafe_allow_html=True)
         Q3 = st.radio(
-            "",
+            "Q3_label",
             [
                 "無明顯錯誤",
                 "小錯，不影響理解",
                 "部分錯誤，仍可參考",
                 "多處錯誤，可信度低",
                 "完全錯誤或誤導"
-            ], key="Q3"
+            ], key="Q3", label_visibility="collapsed"
         )
-        
+
         #Q4
         st.write('<p class="question-text" style="margin-bottom:-30px;">4. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
         Q4 = st.radio(
-            "",
+            "Q4_label",
             [
                 "太長，資訊冗贅",
                 "稍長，可接受",
                 "剛好",
                 "稍短，有些內容缺失",
                 "太短，資訊不足"
-            ], key="Q4"
+            ], key="Q4", label_visibility="collapsed"
         )
-        
+
         #Q5
         st.write('<p class="question-text" style="margin-bottom:-30px;">5. 如果您覺得正確性或長度有問題，請簡述原因：</p>', unsafe_allow_html=True)
-        Q5 = st.text_area("", key="Q5_textarea")
-        
+        Q5 = st.text_area("Q5_label", key="Q5_textarea", label_visibility="collapsed")
+
         #Q6
         st.write('<p class="question-text" style="margin-bottom:-30px;">6. 您對這段Diagnosis的整體滿意程度？</p>', unsafe_allow_html=True)
-        Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
+        Q6 = st.radio("Q6_label", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6", label_visibility="collapsed")
+
 
         ##### brief summary of this week 問卷 #####
         st.subheader("Brief Summary of this week 問卷")
         # Q1
         st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
-        
-        ### 勾選選項
+
+        # 勾選選項
         missing_info_options = [
             "病情變化",
             "重要處置、手術或檢查",
@@ -259,37 +260,36 @@ else:
             "實驗室檢查資料（如血液、尿液、培養結果等）",
             "轉診或轉院計畫（如安排專科轉診、轉至加護病房）"
         ]
-        
-        ### 用字典收集勾選結果
+
+        # 用字典收集勾選結果
         Q7_dict = {}
         for option in missing_info_options:
-            Q7_dict[option] = st.checkbox(option)
+            Q7_dict[option] = st.checkbox(option, key=f"Q7_{option}")
         Q7_selected = [k for k, v in Q7_dict.items() if v]
-        
+
         #Q2
         st.write('<p class="question-text" style="margin-bottom:-30px;">2. 除了上述類別外，請簡述您發現缺少的資訊：</p>', unsafe_allow_html=True)
-        Q8 = st.text_area("", key="Q8_textarea")
-        
+        Q8 = st.text_area("Q8_label", key="Q8_textarea", label_visibility="collapsed")
+
         #Q3
         st.write('<p class="question-text" style="margin-bottom:-30px;">3. 長度評估（請選最符合）</p>', unsafe_allow_html=True)
-        Q9 = st.radio(
-            "",
+        Q9 = st.radio("Q9_label",
             [
                 "太長，資訊冗贅",
                 "稍長，可接受",
                 "剛好",
                 "稍短，有些內容缺失",
                 "太短，資訊不足"
-            ], key="Q9"
+            ], key="Q9", label_visibility="collapsed"
         )
-        
+
         #Q4
         st.write('<p class="question-text" style="margin-bottom:-30px;">4. 您所在科別是否偏重某部分資訊紀錄？請說明需求：</p>', unsafe_allow_html=True)
-        Q10 = st.text_area("", key="Q10_textarea")
-        
+        Q10 = st.text_area("Q10_label", key="Q10_textarea", label_visibility="collapsed")
+
         #Q5
         st.write('<p class="question-text" style="margin-bottom:-30px;">5. 您對這段Brief Summary of this week的整體滿意程度？</p>', unsafe_allow_html=True)
-        Q11 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q11")
+        Q11 = st.radio("Q11_label", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q11", label_visibility="collapsed")
 
         # 提交按鈕
         if st.button("提交問卷"):
