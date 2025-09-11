@@ -148,7 +148,8 @@ else:
             department_notes["預測Diagnosis的prompt"] = ""  # 或預設文字
         
         with st.expander("預測Diagnosis的prompt", expanded=False):
-            st.text(department_notes.get("預測Diagnosis的prompt", """Given the following information from the current hospitalization:
+            st.text(department_notes.get("預測Diagnosis的prompt", """
+            Given the following information from the current hospitalization:
             - The most recent weekly summary written during this admission.
             - The admission note for this admission.
             - All inter-ward discharge summaries (if any).
@@ -167,8 +168,6 @@ else:
             
         with st.expander("預測Brief summary of this week的prompt", expanded=False):
             st.text(department_notes.get("預測Brief summary of this week的prompt", """
-            [System]You are a clinical documentation assistant.
-
             Given the following input data:
             - Weekly summary
             - Current admission note
