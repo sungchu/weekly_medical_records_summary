@@ -175,7 +175,7 @@ else:
         )
 
         ##### Diagnosis 問卷 #####
-        st.subheader("Diagnosis 問卷"):
+        st.subheader("Diagnosis 問卷")
         #Q1
         st.write('<p class="question-text" style="margin-bottom:-30px;">1. 是否包含重要診斷？</p>', unsafe_allow_html=True)
         Q1 = st.radio(
@@ -228,7 +228,7 @@ else:
         Q6 = st.radio("", ["非常不滿意", "不滿意", "普通", "滿意", "非常滿意"], horizontal=True, key="Q6")
 
         ##### brief summary of this week 問卷 #####
-        st.subheader("Brief Summary of this week 問卷"):        
+        st.subheader("Brief Summary of this week 問卷")
         # Q1
         st.write('<p class="question-text">1. 本週摘要是否有需包含但未包含的資訊？（可複選）</p>', unsafe_allow_html=True)
         
