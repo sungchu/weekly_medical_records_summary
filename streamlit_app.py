@@ -177,7 +177,8 @@ prompt1 = """
                     display_text = str(content)
 
                 st.text(display_text)
-        st.expander(prompt1)
+                st.text(prompt2)
+        st.expander("prompt1")
         st.expander(prompt2)
                 
 
