@@ -95,24 +95,8 @@ else:
     "會診單【醫師訪視時間、會診科部、診斷、建議】": {"event_date": df.iloc[idx]['EVENTDATE'],
                                         "assessment_note": df.iloc[idx]['ASSESSMENTNOTE']}, 
     "最近一次weekly summary Brief Summary of this week": df.iloc[idx]['last_weekly_brief_summary'], }
-    "預測Diagnosis的prompt":"""
-    Given the following information from the current hospitalization:
-    - The most recent weekly summary written during this admission.
-    - The admission note for this admission.
-    - All inter-ward discharge summaries (if any).
-    - All operative records available up to the time of writing.
-    - Progress notes, on-service notes, and off-service notes from the 7 days prior to the note-writing date.
-
-    Generate a medically concise weekly inpatient summary.
-
-    Requirements:
-    - Present the summary in bullet point format, each starting with #.
-    - Each bullet must be a short, self-contained clinical statement.
-    - Focus only on: diagnosis, significant clinical events, procedures performed, response to treatment, and current condition.
-    - Omit any statements that simply indicate 'no events', 'nil', or 'no changes'.
-    - Do not use labels such as 'Main diagnosis' or 'Procedures performed'.
-    - Keep the wording concise and factual.
-    """, 
+    "預測Diagnosis的prompt":df.iloc[idx]['DIAGNOSIS_x']
+    , 
     "預測Brief summary of this week的prompt":"""
     [System]You are a clinical documentation assistant.
 
