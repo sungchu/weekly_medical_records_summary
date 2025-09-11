@@ -168,7 +168,7 @@ else:
 
             div[data-testid="stCheckbox"] label {
                 font-size: 16px;       /* 調整文字大小 */
-                line-height: 1;      /* 控制文字行距 */
+                line-height: 0.5;      /* 控制文字行距 */
             }
             
             /* 統一問句樣式 */
