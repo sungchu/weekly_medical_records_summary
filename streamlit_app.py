@@ -42,8 +42,8 @@ else:
         dept_choice = st.selectbox("請選擇科部", ["內科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"內科部": "filtered_MED.jsonl"}
-    df = pd.read_json(department_file[dept_choice], lines=True)
+    department_file = {"內科部": "SURG_10input.xlsx"}
+    df = pd.read_excel(department_file[dept_choice])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
