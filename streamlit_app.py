@@ -45,7 +45,7 @@ else:
     department_file = {"外科部": "SURG_10input.jsonl"}
     #df = pd.read_excel(department_file[dept_choice])
     df = pd.read_json(department_file[dept_choice], lines=True)
-    
+    st.write(df.iloc[0])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
