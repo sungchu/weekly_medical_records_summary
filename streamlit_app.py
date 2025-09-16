@@ -76,7 +76,7 @@ else:
     ]
 
     department_notes = {
-    "醫師原本撰寫的diagnosis": df.iloc[idx]['dr_DIAGNOSIS'], 
+    "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
     "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
     "出院病摘【出院診斷】": df.iloc[idx]['CD'],
