@@ -39,19 +39,19 @@ if not user_id:
 else:
     # 在主頁面選擇科部
     with col2:
-        dept_choice = st.selectbox("請選擇科部", ["內科部"])
+        dept_choice = st.selectbox("請選擇科部", ["外科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"內科部": "SURG_10input.xlsx"}
+    department_file = {"外科部": "SURG_10input.xlsx"}
     df = pd.read_excel(department_file[dept_choice])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
     with col3:
-        example_choice = st.selectbox("請選擇範例", ["範例1", "範例2", "範例3"])
+        example_choice = st.selectbox("請選擇範例", ["範例1", "範例2", "範例3", "範例4", "範例5", "範例6", "範例7", "範例8", "範例9", "範例10"])
 
     # 範例對應索引
-    example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
+    example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2, "範例4": 3, "範例5": 4, "範例6": 5, "範例7": 6, "範例8": 7, "範例9": 8, "範例10": 9}
     idx = example_to_idx[example_choice]
 
     # 模擬科室筆記
