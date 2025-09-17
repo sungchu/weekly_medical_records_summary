@@ -136,7 +136,7 @@ else:
                     display_text = ""
                     for key, value in content.items():
                         display_text += f"【{key}】\n{value}\n\n"
-                    st.text(display_text)
+                    st.code(display_text)
         
         with st.expander("預測Diagnosis的prompt", expanded=False):
             st.text(department_notes.get("預測Diagnosis的prompt", """
