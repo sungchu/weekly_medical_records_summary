@@ -42,11 +42,9 @@ else:
         dept_choice = st.selectbox("請選擇科部", ["外科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"外科部": "filtered_MED.jsonl"}
-    #df = pd.read_excel(department_file[dept_choice])
-    df = pd.read_json(department_file[dept_choice], lines =True)
+    department_file = {"外科部": "excel-to-json.json"}
+    df = pd.read_json(department_file[dept_choice])
     st.write(df.iloc[0])
-    #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
     # 在主頁面選擇範例
     with col3:
@@ -76,7 +74,7 @@ else:
     ]
 
     department_notes = {
-    "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS_x'], 
+    "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
     "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
     "出院病摘【出院診斷】": df.iloc[idx]['CD'],
@@ -114,7 +112,7 @@ else:
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
-    #summary_text = df.iloc[idx]['LLM_BRIEFSUMMARY']
+    summary_text = df.iloc[idx]['LLM_BRIEFSUMMARY']
 
     # 主區域顯示
     #st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
