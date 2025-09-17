@@ -44,7 +44,7 @@ else:
     # 根據科部讀取對應檔案
     department_file = {"外科部": "excel-to-json.json"}
     #df = pd.read_excel(department_file[dept_choice])
-    df = pd.read_json(department_file[dept_choice], lines=True)
+    df = pd.read_json(department_file[dept_choice])
     st.write(df.iloc[0])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
