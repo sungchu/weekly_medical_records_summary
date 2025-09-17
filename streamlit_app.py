@@ -70,7 +70,8 @@ else:
     df_clean = clean_df_for_arrow(df)
     df_clean.to_json(orient="records")  # 或
     import pyarrow as pa
-    df = pa.Table.from_pandas(df_clean)
+    table = pa.Table.from_pandas(df_clean)
+    df = table.to_pandas()
     st.write(df.iloc[0])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
