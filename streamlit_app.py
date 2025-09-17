@@ -45,6 +45,8 @@ else:
     department_file = {"外科部": "SURG_10input_output.jsonl"}
     df = pd.read_json(department_file[dept_choice], lines = True)
     st.write(df.iloc[0])
+    st.write(df.iloc[idx])
+    st.write(type(df.iloc[idx]['DIAGNOSIS']))
 
     # 在主頁面選擇範例
     with col3:
