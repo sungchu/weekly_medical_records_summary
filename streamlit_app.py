@@ -43,9 +43,7 @@ else:
 
     # 根據科部讀取對應檔案
     department_file = {"外科部": "SURG_10input_output.jsonl"}
-    df = pd.read_json(department_file[dept_choice], lines = True)
-    st.write(df.iloc[0])
-    
+    df = pd.read_json(department_file[dept_choice], lines = True)    
 
     # 在主頁面選擇範例
     with col3:
@@ -135,8 +133,12 @@ else:
                     # dictionary 內容整理成文字
                     display_text = ""
                     for key, value in content.items():
-                        display_text += f"【{key}】\n{value}\n\n"
-                    st.text(display_text)
+                        if value:  # 避免空值
+                            display_text += f"【{key}】\n{value}\n\n"
+                    st.code(display_text)  # 用 st.code() 顯示多行文字，保留換行
+                else:
+                    if content:  # 避免空值
+                        st.code(content)
         
         with st.expander("預測Diagnosis的prompt", expanded=False):
             st.text(department_notes.get("預測Diagnosis的prompt", """
