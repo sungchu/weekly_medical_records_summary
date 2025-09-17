@@ -4,6 +4,8 @@ import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os
+import numpy as np
+import re
 #os.environ["STREAMLIT_SERVER_RUNONSAVE"] = "false"
 base_dir = os.path.dirname(__file__)
 
@@ -29,6 +31,26 @@ st.set_page_config(layout="wide")
 #example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2}
 #idx = example_to_idx[example_choice]
 
+def clean_df_for_arrow(df: pd.DataFrame) -> pd.DataFrame:
+    df_clean = df.copy()
+    
+    for col in df_clean.columns:
+        # 處理 object 列
+        if df_clean[col].dtype == "object":
+            df_clean[col] = df_clean[col].apply(
+                lambda x: re.sub(r"[\u202a-\u202e]", "", str(x).strip()) if pd.notnull(x) else ""
+            )
+        
+        # 處理 Timestamp 列
+        elif np.issubdtype(df_clean[col].dtype, np.datetime64):
+            df_clean[col] = df_clean[col].apply(lambda x: x.isoformat() if pd.notnull(x) else "")
+        
+        # 處理數值列可能的 NaN
+        elif np.issubdtype(df_clean[col].dtype, np.number):
+            df_clean[col] = df_clean[col].apply(lambda x: "" if pd.isnull(x) else x)
+    
+    return df_clean
+
 # 在主頁面輸入員工編號
 col1, col2, col3, col4 = st.columns([1, 1, 1, 5])
 with col1:
@@ -45,6 +67,10 @@ else:
     department_file = {"外科部": "SURG_10input.jsonl"}
     #df = pd.read_excel(department_file[dept_choice])
     df = pd.read_json(department_file[dept_choice], lines=True)
+    df_clean = clean_df_for_arrow(df)
+    df_clean.to_json(orient="records")  # 或
+    import pyarrow as pa
+    df = pa.Table.from_pandas(df_clean)
     st.write(df.iloc[0])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
