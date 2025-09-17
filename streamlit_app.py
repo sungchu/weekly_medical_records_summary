@@ -42,9 +42,9 @@ else:
         dept_choice = st.selectbox("請選擇科部", ["外科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"外科部": "excel-to-json.json"}
+    department_file = {"外科部": "filtered_MED.jsonl"}
     #df = pd.read_excel(department_file[dept_choice])
-    df = pd.read_json(department_file[dept_choice])
+    df = pd.read_json(department_file[dept_choice], lines =True)
     st.write(df.iloc[0])
     #df = pd.read_json(os.path.join(base_dir, "data", department_file[dept_choice]), lines=True)
 
