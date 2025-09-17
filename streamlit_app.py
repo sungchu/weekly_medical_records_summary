@@ -79,8 +79,8 @@ else:
     "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
     "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
-    #"出院病摘【出院診斷】": df.iloc[idx]['CD'],
-    #"手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
+    "出院病摘【出院診斷】": df.iloc[idx]['CD'],
+    "手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
     "病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
                             "on_service_note": df.iloc[idx]['onservice_history'],
                             "off_service_note": df.iloc[idx]['offservice_history']},
@@ -114,7 +114,7 @@ else:
 
     # 中間欄整理的病歷資訊
     diagnosis_text = df.iloc[idx]['LLM_DIAGNOSIS']
-    summary_text = df.iloc[idx]['LLM_BRIEFSUMMARY']
+    #summary_text = df.iloc[idx]['LLM_BRIEFSUMMARY']
 
     # 主區域顯示
     #st.markdown(f"**員編**：{user_id} &nbsp;&nbsp; **科室**：{dept_choice}&nbsp;—&nbsp;{example_choice}", unsafe_allow_html=True)
