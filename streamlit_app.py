@@ -42,7 +42,7 @@ else:
         dept_choice = st.selectbox("請選擇科部", ["外科部"])
 
     # 根據科部讀取對應檔案
-    department_file = {"外科部": "excel-to-json.json"}
+    department_file = {"外科部": "SURG_10input_output.jsonl", lines = True}
     df = pd.read_json(department_file[dept_choice])
     st.write(df.iloc[0])
 
@@ -77,8 +77,8 @@ else:
     "醫師原本撰寫的diagnosis": df.iloc[idx]['DIAGNOSIS'], 
     "醫師原本撰寫的brief summary of this week": df.iloc[idx]['BRIEFSUMMARY'], 
     "入院紀錄【臆斷】": df.iloc[idx]['DEPT_CONTENT'],
-    #"出院病摘【出院診斷】": df.iloc[idx]['CD'],
-    #"手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
+    "出院病摘【出院診斷】": df.iloc[idx]['CD'],
+    "手術紀錄【術後診斷】": df.iloc[idx]['OPNOTEVALUETEXT_x'],
     "病程紀錄【PAP之Problem】": {"progress_note": df.iloc[idx]['progress_history'],
                             "on_service_note": df.iloc[idx]['onservice_history'],
                             "off_service_note": df.iloc[idx]['offservice_history']},
