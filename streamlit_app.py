@@ -134,11 +134,13 @@ else:
                     display_text = ""
                     for key, value in content.items():
                         if value:  # 避免空值
+                            # 這裡確保換行符號正確
                             display_text += f"【{key}】\n{value}\n\n"
-                    st.code(display_text)  # 用 st.code() 顯示多行文字，保留換行
+                    # 用 text 顯示多行文字，最後加一個空格避免壓縮
+                    st.text(display_text + " ")
                 else:
-                    if content:  # 避免空值
-                        st.code(content)
+                    if content:
+                        st.text(content + " ")  # 加一個空格讓 text 框高度自動調整
         
         with st.expander("預測Diagnosis的prompt", expanded=False):
             st.text(department_notes.get("預測Diagnosis的prompt", """
