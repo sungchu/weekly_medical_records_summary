@@ -52,8 +52,6 @@ else:
     # 範例對應索引
     example_to_idx = {"範例1": 0, "範例2": 1, "範例3": 2, "範例4": 3, "範例5": 4, "範例6": 5, "範例7": 6, "範例8": 7, "範例9": 8, "範例10": 9}
     idx = example_to_idx[example_choice]
-    st.write(df.iloc[idx])
-    st.write(type(df.iloc[idx]['DIAGNOSIS']))
     # 模擬科室筆記
     departments = [
         "醫師原本撰寫的diagnosis",
